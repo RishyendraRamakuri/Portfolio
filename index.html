@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramakuri Rishyendra - Portfolio</title>
+  <style>
+    :root {
+      --primary: #3a86ff;
+      --secondary: #8338ec;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --success: #38b000;
+      --text: #333;
+      --border-radius: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 120px 0 80px;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 30px;
+    }
+    
+    nav ul li a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+    
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .hero-text {
+      width: 60%;
+    }
+    
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .hero-image {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn.secondary {
+      background: transparent;
+      border: 2px solid white;
+      margin-left: 15px;
+    }
+    
+    .btn.secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .skill-category {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      width: calc(50% - 20px);
+      transition: transform 0.3s;
+    }
+    
+    .skill-category:hover {
+      transform: translateY(-5px);
+    }
+    
+    .skill-category h3 {
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .skill-tag {
+      background: #f0f0f0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    
+    .skill-tag:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+    
+    .project-content {
+      padding: 20px;
+    }
+    
+    .project-content h3 {
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .project-content p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .project-tag {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      background: rgba(58, 134, 255, 0.1);
+      color: var(--primary);
+      border-radius: 4px;
+    }
+    
+    .experience-timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .experience-timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #f0f0f0;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -17px;
+      background-color: white;
+      border: 4px solid var(--primary);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid #f0f0f0;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent #f0f0f0;
+    }
+    
+    .right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid #f0f0f0;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #f0f0f0 transparent transparent;
+    }
+    
+    .right::after {
+      left: -16px;
+    }
+    
+    .timeline-content {
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: var(--border-radius);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .timeline-content h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .timeline-content h4 {
+      margin-bottom: 10px;
+      color: #666;
+      font-weight: 400;
+    }
+    
+    .timeline-content ul {
+      padding-left: 20px;
+    }
+    
+    .timeline-content ul li {
+      margin-bottom: 8px;
+    }
+    
+    .achievements {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .achievement-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    
+    .achievement-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary);
+    }
+    
+    .achievement-card h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .achievement-card p {
+      color: #666;
+    }
+    
+    .education {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    .education-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    
+    .education-icon {
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .education-content h3 {
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .education-content h4 {
+      margin-bottom: 10px;
+      color: #666;
+      font-weight: 400;
+    }
+    
+    .education-content p {
+      color: var(--success);
+      font-weight: 500;
+    }
+    
+    .contact {
+      background: var(--dark);
+      color: white;
+      padding: 80px 0;
+    }
+    
+    .contact .section-title h2 {
+      color: white;
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 20px;
+    }
+    
+    .contact-card h3 {
+      margin-bottom: 15px;
+      color: var(--light);
+    }
+    
+    .contact-card p, .contact-card a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+    }
+    
+    .contact-card a:hover {
+      color: var(--primary);
+    }
+    
+    footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      
+      .hero-text {
+        width: 100%;
+        margin-top: 30px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+      
+      .skill-category {
+        width: 100%;
+      }
+      
+      .experience-timeline::after {
+        left: 31px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        }
+
+        .timeline-item::before {
+        left: 60px;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #f0f0f0 transparent transparent;
+        }
+
+        .timeline-item::after {
+        left: 15px;
+        }
+
+        .right {
+        left: 0%;
+        }
+
+        .education-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        }
+
+        .contact-info {
+        grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+<body>
+  <!-- Your HTML content would go here -->
+   <!-- Navigation -->
+  <nav class="container">
+    <div class="logo">R.Rishyendra</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home">
+    <div class="container hero">
+      <div class="hero-text">
+        <h1>Ramakuri Rishyendra</h1>
+        <p>Senior Undergraduate in Electronics & Communication Engineering</p>
+        <a href="#contact" class="btn">Contact Me</a>
+        <a href="#projects" class="btn secondary">View Projects</a>
+      </div>
+      <div class="hero-image">
+        <img src="./IMG_20240627_113331.jpg" alt="Ramakuri Rishyendra">
+      </div>
+    </div>
+  </header>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Technical Skills</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-category">
+          <h3>Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools & Technologies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">NoSQL</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Software Platforms</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">VMware</span>
+            <span class="skill-tag">Postman</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Core Competencies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Web Development</span>
+            <span class="skill-tag">Database Management</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Problem Solving</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+      </div>
+      <div class="projects">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="/api/placeholder/350/200" alt="AI-Driven Smart Agriculture Platform">
+          </div>
+          <div class="project-content">
+            <h3>AI-Driven Smart Agriculture Platform</h3>
+            <div class="project-tags">
+              <span class="project-tag">Machine Learning</span>
+              <span class="project-tag">Image Processing</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">Node.js</span>
+            </div>
+            <p>Integrated machine learning and image processing to create a unified system for crop recommendation and disease diagnosis, reducing manual intervention by 40%.</p>
+            <p>Trained CNN models on 10,000+ crop disease images (90% accuracy) and deployed supervised learning algorithms to predict optimal crops using soil, weather, and terrain data.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="/api/placeholder/350/200" alt="NOAA APT Decoder">
+          </div>
+          <div class="project-content">
+            <h3>NOAA APT Decoder for Weather Satellite Imagery</h3>
+            <div class="project-tags">
+              <span class="project-tag">SDR</span>
+              <span class="project-tag">Fourier Transform</span>
+              <span class="project-tag">DSP</span>
+            </div>
+            <p>Engineered a decoder for NOAA satellite signals using Software-Defined Radio (SDR) and Fourier transforms, reconstructing 100+ high-resolution weather maps.</p>
+            <p>Enhanced image clarity by 50% using DSP techniques (noise filtering, contrast adjustment).</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="/api/placeholder/350/200" alt="5G Anomaly Detection">
+          </div>
+          <div class="project-content">
+            <h3>5G Anomaly Detection using LSTM</h3>
+            <div class="project-tags">
+              <span class="project-tag">LSTM</span>
+              <span class="project-tag">5G</span>
+              <span class="project-tag">Network Analysis</span>
+            </div>
+            <p>Developed an LSTM model to detect network anomalies in 5G logs, achieving 95% prediction accuracy on a dataset of 1M+ entries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Work Experience</h2>
+      </div>
+      <div class="experience-timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Web Development Intern</h3>
+            <h4>Ourtown | May - Jul 2024</h4>
+            <ul>
+              <li>Optimized a 100GB company database, improving performance by 20%</li>
+              <li>Resolved 50+ software bugs in Node.js applications, improving code reliability by 30%</li>
+              <li>Deployed a full-stack application to AWS, achieving 99.9% uptime</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Student Coordinator</h3>
+            <h4>OPEN HOUSE 2023, VNRVJIET | Mar 2023</h4>
+            <ul>
+              <li>Streamlined workflows for 250+ teams for 2 days, reducing scheduling conflicts by 40%</li>
+              <li>Managed logistics for VNRVJIET's largest project expo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <div class="section-title">
+        <h2>Education</h2>
+      </div>
+      <div class="education">
+        <div class="education-card">
+          <div class="education-icon">
+            <i>🎓</i>
+          </div>
+          <div class="education-content">
+            <h3>B.Tech in Electronics & Communication Engineering</h3>
+            <h4>VNR VJIET | 2022 - 2026 (Pursuing)</h4>
+            <p>CPI: 8.4</p>
+          </div>
+        </div>
+        <div class="education-card">
+          <div class="education-icon">
+            <i>🎓</i>
+          </div>
+          <div class="education-content">
+            <h3>Intermediate in Physics, Chemistry & Mathematics</h3>
+            <h4>Alphores Junior College | 2022</h4>
+            <p>Score: 97.3%</p>
+          </div>
+        </div>
+        <div class="education-card">
+          <div class="education-icon">
+            <i>🎓</i>
+          </div>
+          <div class="education-content">
+            <h3>SSC</h3>
+            <h4>Johnson Global High School | 2020</h4>
+            <p>Score: 10.0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-title">
+        <h2>Achievements & Certifications</h2>
+      </div>
+      <div class="achievements">
+        <div class="achievement-card">
+          <h3>IoT Hackathon Winner</h3>
+          <p>Outperformed 30+ teams to design a blockchain-based energy trading platform</p>
+        </div>
+        <div class="achievement-card">
+          <h3>NPTEL Certification</h3>
+          <p>Programming in JAVA | 47% percentile</p>
+        </div>
+        <div class="achievement-card">
+          <h3>WEB DEVELOPMENT Certificate</h3>
+          <p>Training and Placement Department</p>
+        </div>
+        <div class="achievement-card">
+          <h3>Advanced Data Structures & Algorithms</h3>
+          <p>Smart Interviews | Solved 150+ LeetCode-style problems</p>
+        </div>
+        <div class="achievement-card">
+          <h3>Industrial Visit: Air Traffic Control</h3>
+          <p>Explored RGIA, Hyderabad | Observed radar systems managing 500+ daily flights using AI-driven algorithms</p>
+        </div>
+        <div class="achievement-card">
+          <h3>Industrial Visit: Ananth Technologies</h3>
+          <p>Visited Ananth Technologies, Hyderabad | Analyzed aerospace R&D workflows for satellite communication systems</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Me</h2>
+      </div>
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i>📧</i>
+          </div>
+          <h3>Email</h3>
+          <p><a href="mailto:ramakuririshyendra@gmail.com">ramakuririshyendra@gmail.com</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i>📱</i>
+          </div>
+          <h3>Phone</h3>
+          <p><a href="tel:+918688940274">+91-8688940274</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i>📍</i>
+          </div>
+          <h3>Address</h3>
+          <p>Flat No: 203, Varsha Residency, Road No: 3, Hanuman Nagar, Rekurthy, Karimnagar, Telangana - 505001</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i>💼</i>
+          </div>
+          <h3>LinkedIn</h3>
+          <p><a href="#" target="_blank">Connect with me on LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Ramakuri Rishyendra. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
